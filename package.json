@@ -1,0 +1,41 @@
+{
+  "name": "api-marvel",
+  "descripton": "lorem ipsum dolor sit amet consectetur adipiscing elit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "start": "node src/index.js",
+    "test": "jest index.spec.js NODE_ENV=test",
+    "test:watch": "jest index.spec.js NODE_ENV=test --watch",
+    "test:unit": "jest Units --watch",
+    "test:integrations": "jest Integrations --watch",
+    "test:coverage": "NODE_ENV=test jest --collect-coverage",
+    "validate": "yarn lint && jest"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.7",
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.20.0",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.2.1",
+    "mongoose": "^5.6.10",
+    "short-uuid": "^3.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1",
+    "randexp": "^0.5.3",
+    "supertest": "^4.0.2"
+  }
+}

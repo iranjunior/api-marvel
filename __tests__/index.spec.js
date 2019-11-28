@@ -1,0 +1,1 @@
+require('./Integrations/user.spec');
