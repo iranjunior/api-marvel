@@ -2,7 +2,7 @@ const { api, config } = require('../../service/api');
 
 const indexLocal = async (request, response) => {
   try {
-    await api.get(`/characters?${config()}`).then((res) => {
+    await api.get(`/characters?${config(25)}`).then((res) => {
       response.status(200).send(res.data);
     }).catch((err) => {
       response.status(500).send(err);

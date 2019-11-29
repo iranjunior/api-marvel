@@ -14,7 +14,9 @@ const auth = (request, response, next) => {
   const [, token] = authorization.split(' ');
 
   try {
-    jwt.verify(token, secret);
+    const user = jwt.verify(token, secret);
+    request.user = user;
+
     return next();
   } catch (error) {
     return response

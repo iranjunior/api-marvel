@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const uuid = require('short-uuid');
 const bcrypt = require('bcryptjs');
 
+const Token = require('../../utils/refreshToken');
+
 const UserSchema = new Schema({
   id: {
     type: String,
@@ -57,6 +59,14 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
+UserSchema.static('verifyPassword', async function (email, password) {
+  const [user] = await this.find({ email }).select(['password']);
+
+  const validate = await bcrypt.compare(password, user.password);
+
+  return validate;
+});
+
 UserSchema.static('check', async function (element, token) {
   try {
     const [user] = await this.find(element);
@@ -72,5 +82,15 @@ UserSchema.static('check', async function (element, token) {
   }
 });
 
+UserSchema.static('loginUser', async function (email) {
+  const [user] = await this.find(email);
+
+  const token = Token.generate(user.id);
+
+  return {
+    id: user.id,
+    token,
+  };
+});
 
 module.exports = model('User', UserSchema);

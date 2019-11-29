@@ -7,9 +7,13 @@ const api = Axios.create({
   timeout: 10000,
 });
 
-const config = () => {
+const config = (offset) => {
   const timestamp = Date.now();
   const hash = md5(`${timestamp}${privateKey}${publicKey}`);
+
+  if (offset) {
+    return `ts=${timestamp}&apikey=${publicKey}&hash=${hash}&offset=${offset}`;
+  }
   return `ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
 };
 

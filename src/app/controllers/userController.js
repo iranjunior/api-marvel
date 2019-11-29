@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/user');
 const { secret } = require('../../config/vars');
-const Characters = require('./charactesControllers');
+const Characters = require('./charactersControllers');
+const pathResolver = require('../lib/helpers/pathsResolver');
 
 const storeLocal = async (request, response, User) => {
   try {
@@ -27,29 +29,12 @@ const storeLocal = async (request, response, User) => {
 
 const showLocal = async (request, response, User) => {
   try {
-    const { id } = request.params;
+    const { id } = pathResolver(request.params[0]);
     const [, token] = request.headers.authorization.split(' ');
 
-    const exist = await User.check({ id }, token);
+    const avaliable = await User.check({ id }, token);
 
-    if (!exist) { return response.status(403).send({ mesage: 'Nao autorizado' }); }
-
-    const [user] = await User.find({ id });
-
-    return response.status(200).send({ user });
-  } catch (error) {
-    return response.status(500).send({ error });
-  }
-};
-
-const showWithCharactersLocal = async (request, response, User) => {
-  try {
-    const { id } = request.params;
-    const [, token] = request.headers.authorization.split(' ');
-
-    const exist = await User.check({ id }, token);
-
-    if (!exist) { return response.status(403).send({ mesage: 'Nao autorizado' }); }
+    if (!avaliable) { return response.status(403).send({ mesage: 'Nao autorizado' }); }
 
     const user = await User.findOne({ id });
 
@@ -61,6 +46,7 @@ const showWithCharactersLocal = async (request, response, User) => {
   }
 };
 
+
 const updateLocal = async (request, response, User) => {
 
 };
@@ -71,7 +57,6 @@ const destroyLocal = (request, response, User) => {};
 module.exports = {
   store: (request, response) => storeLocal(request, response, UserModel),
   show: (request, response) => showLocal(request, response, UserModel),
-  showWithCharacters: (request, response) => showWithCharactersLocal(request, response, UserModel),
   update: (request, response) => updateLocal(request, response, UserModel),
   destroy: (request, response) => destroyLocal(request, response, UserModel),
   storeLocal,

@@ -1,7 +1,7 @@
 const UserModel = require('../../src/app/models/user');
 
 const user = async (User) => {
-  // await User.remove({});
+  await User.remove({});
 };
 
 module.exports = {
