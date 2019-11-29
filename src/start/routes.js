@@ -1,14 +1,14 @@
 const routes = require('express').Router();
 const CharactersController = require('../app/controllers/charactersControllers');
 const SessionController = require('../app/controllers/sessionControllers');
+const HealthController = require('../app/controllers/healthControllers');
 const UserController = require('../app/controllers/userController');
 const checkUser = require('../app/middleware/checkToken');
 const validate = require('../app/middleware/validate');
 const auth = require('../app/middleware/auth');
 
-routes.get('/health', async (req, res) => res.status(200).send({
-  message: 'Estou Online',
-}));
+routes.get('/health', HealthController.index);
+routes.get('/health/marvel', HealthController.marvel);
 
 
 routes.post('/signup', validate.user, UserController.store);
