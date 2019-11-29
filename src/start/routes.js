@@ -6,6 +6,10 @@ const checkUser = require('../app/middleware/checkToken');
 const validate = require('../app/middleware/validate');
 const auth = require('../app/middleware/auth');
 
+routes.get('/health', async (req, res) => res.status(200).send({
+  message: 'Estou Online',
+}));
+
 
 routes.post('/signup', validate.user, UserController.store);
 routes.post('/signin', validate.signin, SessionController.auth);
