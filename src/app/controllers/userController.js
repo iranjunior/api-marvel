@@ -29,13 +29,7 @@ const storeLocal = async (request, response, User) => {
 
 const showLocal = async (request, response, User) => {
   try {
-    const { id } = pathResolver(request.params[0]);
-    const [, token] = request.headers.authorization.split(' ');
-
-    const avaliable = await User.check({ id }, token);
-
-    if (!avaliable) { return response.status(403).send({ mesage: 'Nao autorizado' }); }
-
+    const { id } = request.params;
     const user = await User.findOne({ id });
 
     const characters = await Characters.get(user.characters);
@@ -48,10 +42,34 @@ const showLocal = async (request, response, User) => {
 
 
 const updateLocal = async (request, response, User) => {
+  try {
+    const { id } = request.params;
+    const user = request.body;
 
+    const { nModified } = await User.updateOne({ id }, user);
+    if (!nModified) {
+      return response.status(204).send({ message: 'Nao foi feita nenhuma atualizacao' });
+    }
+
+    return response.status(200).send({ message: 'Usuario atualizado com sucesso' });
+  } catch (error) {
+    return response.status(500).send(error);
+  }
 };
 
-const destroyLocal = (request, response, User) => {};
+const destroyLocal = async (request, response, User) => {
+  try {
+    const { id } = request.params;
+    const { deletedCount } = await User.deleteOne({ id });
+    if (!deletedCount) {
+      return response.status(204).send({ message: 'Usuario nao Deletado' });
+    }
+
+    return response.status(200).send({ message: 'Usuario Deletado com sucesso' });
+  } catch (error) {
+    return response.status(500).send(error);
+  }
+};
 
 
 module.exports = {

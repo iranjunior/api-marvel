@@ -7,8 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/src/index.js"
+            "name": "[lOCAL] Test API Marvel",
+            "program": "${workspaceFolder}/src/index.js",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "skipFiles": [
+                "node_modules/**/*.js",
+                "__tests__/**/*.js"
+            ],
         },
     {
         "type": "node",

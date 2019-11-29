@@ -1,16 +1,20 @@
 const { api, config } = require('../../service/api');
+const UserModel = require('../models/user');
 
-const indexLocal = async (request, response) => {
+const indexLocal = async (request, response, User) => {
   try {
-    await api.get(`/characters?${config(25)}`).then((res) => {
-      response.status(200).send(res.data);
-    }).catch((err) => {
-      response.status(500).send(err);
-    });
+    const { id } = request.user;
+    const { offset } = await User.findOne({
+      id,
+    }, 'offset');
+    const { data } = await api.get(`/characters?${config(offset)}`);
+
+    await User.updateOne({ id }, { offset: offset + data.data.count });
+
+    response.status(200).send(data);
   } catch (error) {
     response.status(500).send(error);
   }
-  return response.status(200).send();
 };
 
 
@@ -25,7 +29,7 @@ const getLocal = async (characters) => {
 
 
 module.exports = {
-  index: (request, response) => indexLocal(request, response),
+  index: (request, response) => indexLocal(request, response, UserModel),
   get: (characters) => getLocal(characters),
   indexLocal,
 };

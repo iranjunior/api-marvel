@@ -41,6 +41,10 @@ const UserSchema = new Schema({
     required: true,
   },
   characters: [{ type: Number }],
+  offset: {
+    type: Number,
+    default: 0,
+  },
 }, {
   timestamps: true,
 });

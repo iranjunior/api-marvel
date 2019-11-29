@@ -1,4 +1,4 @@
-const { user, signin } = require('../../utils/shemas');
+const { user, signin, update } = require('../../utils/shemas');
 
 const validate = async (request, response, next, schema) => {
   try {
@@ -13,4 +13,5 @@ const validate = async (request, response, next, schema) => {
 module.exports = {
   user: (request, response, next) => validate(request, response, next, user),
   signin: (request, response, next) => validate(request, response, next, signin),
+  update: (request, response, next) => validate(request, response, next, update),
 };
