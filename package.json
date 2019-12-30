@@ -16,6 +16,17 @@
     "test:coverage": "NODE_ENV=test jest --collect-coverage",
     "validate": "yarn lint && jest"
   },
+  "husky": {
+    "hooks":{
+      "pre-commit": "lint-staged", 
+      "pre-push": "yarn validate" 
+    }
+  },
+  "lint-staged":{
+    "*.js": [
+      "yarn lint"
+    ]
+  },
   "dependencies": {
     "@hapi/joi": "^16.1.7",
     "axios": "^0.19.0",
@@ -38,7 +49,9 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "faker": "^4.1.0",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
     "nodemon": "^1.19.1",
     "randexp": "^0.5.3",
     "supertest": "^4.0.2"
