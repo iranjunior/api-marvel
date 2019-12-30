@@ -8,4 +8,4 @@ before_install:
 install:
     - npm install
 start:
-    - npm rum test
+    - npm run test
