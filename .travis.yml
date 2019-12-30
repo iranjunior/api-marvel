@@ -4,7 +4,7 @@ node_js:
     - 12
 install:
     - npm i --global yarn
-    - yarn 
+    - yarn install
     - npm i --global jest
 start:
     - yarn test
