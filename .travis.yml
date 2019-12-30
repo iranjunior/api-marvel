@@ -3,6 +3,7 @@ sudo: false
 node_js: 
     - 12
 before_install:
+    - npm prune
     - npm i --global jest
 install:
     - npm install
