@@ -3,7 +3,8 @@ sudo: false
 node_js: 
     - 12
 install:
-    - yarn
-    - yarn add -g jest
+    - npm i --global yarn
+    - yarn 
+    - npm i --global jest
 start:
     - yarn test
