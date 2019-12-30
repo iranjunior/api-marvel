@@ -1,0 +1,786 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentação",
+        "description": "Está documentação é para a API do Onboarding do capitulo de Node",
+        "version": "1.0.0",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "host": "localhost:3333",
+        "basePath": "/"
+    },
+    "paths": {
+        "/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Rota de criação de um usuario",
+                "requestBody": {
+                    "description": "Informações para criação de usuario",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario Criado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/ResponseCreated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Informaçoes erradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Usuario já cadastrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro inesperado no servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/signin": {
+            "post": {
+                "tags": [
+                    "Session"
+                ],
+                "summary": "Rota para Logar o usuario",
+                "requestBody": {
+                    "description": "Informações para criação de usuario",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/RequestLogin"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario Logado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/ResponseCreated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Informaçoes erradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuario e/ou senha invalidas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Buscar usuario",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "O uuid é uma string que representa o usuario"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Bearer token",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "O Bearer Token, é um token jwt que determina se o requisitante tem autorização ou não de acessar aquela rota"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/ResponseGetUser"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Rota de atualização de um usuario",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Bearer token",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "O Bearer Token, é um token jwt que determina se o requisitante tem autorização ou não de acessar aquela rota"
+                    },
+                    {
+                        "in": "header",
+                        "name": "Bearer token",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "O Bearer Token, é um token jwt que determina se o requisitante tem autorização ou não de acessar aquela rota"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Informações que atualização o usuario",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario Atualzado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "n": {
+                                            "type": "integer"
+                                        },
+                                        "nModified": {
+                                            "type": "integer"
+                                        },
+                                        "ok": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Informaçoes erradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/BadRequest"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Rota de delete de um usuario",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Bearer token",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "O Bearer Token, é um token jwt que determina se o requisitante tem autorização ou não de acessar aquela rota"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario apagado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "n": {
+                                            "type": "integer"
+                                        },
+                                        "ok": {
+                                            "type": "integer"
+                                        },
+                                        "deletedCount": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "health": {
+            "get": {
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Rota para checar se a aplicacao esta de pe",
+                "responses": {
+                    "200": {
+                        "description": "Aplicacao de funcionando",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "Servico Online"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "health/marvel": {
+            "get": {
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Rota para checar se ha comunicacao estavel com a api da marvel",
+                "responses": {
+                    "200": {
+                        "description": "Marvel retornando dados normal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "Servico da Marvel Online"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Marvel nao responde como esperado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "Servico da Marvel Caiu"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "characters": {
+            "get": {
+                "tags": [
+                    "Marvel"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Bearer token",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "O Bearer Token, é um token jwt que determina se o requisitante tem autorização ou não de acessar aquela rota"
+                    }
+                ],
+                "summary": "Rota para buscar personagens que serao exibidos no aplicativo do Tinder",
+                "responses": {
+                    "200": {
+                        "description": "Marvel retornando dados normal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/ResponseCharacters"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Marvel nao responde como esperado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "Servico da Marvel Caiu"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ResponseCreated": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseGetUser": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "number",
+                    "minimum": 1,
+                    "required": true
+                },
+                "city": {
+                    "type": "string",
+                    "required": true
+                },
+                "state": {
+                    "type": "string",
+                    "required": true
+                },
+                "country": {
+                    "type": "string",
+                    "required": true
+                },
+                "characters": {
+                    "type": "array",
+                    "required": false,
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "RequestLogin": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
+                "email": {
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "required": true
+                },
+                "age": {
+                    "type": "number",
+                    "minimum": 1,
+                    "required": true
+                },
+                "city": {
+                    "type": "string",
+                    "required": true
+                },
+                "state": {
+                    "type": "string",
+                    "required": true
+                },
+                "country": {
+                    "type": "string",
+                    "required": true
+                },
+                "characters": {
+                    "type": "array",
+                    "required": false,
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "ContextJoiError": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                }
+            }
+        },
+        "JoiValidate": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "context": {
+                    "$ref": "#/definitions/ContextJoiError"
+                }
+            }
+        },
+        "BadRequest": {
+            "type": "object",
+            "properties": {
+                "_original": {
+                    "type": "object",
+                    "$ref": "#/definitions/User"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JoiValidate"
+                    }
+                }
+            }
+        },
+        "ResponseCharacters": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "number",
+                    "required": true
+                },
+                "status": {
+                    "type": "string",
+                    "required": true
+                },
+                "copyright": {
+                    "type": "string",
+                    "required": true
+                },
+                "attributionText": {
+                    "type": "string",
+                    "required": true
+                },
+                "attributionHTML": {
+                    "type": "string",
+                    "required": true
+                },
+                "etag": {
+                    "type": "string",
+                    "required": true
+                },
+                "data": {
+                    "type": "object",
+                    "required": true,
+                    "propeties": {
+                        "offset": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "limit": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "total": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "count": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "results": {
+                            "type": "array",
+                            "required": true,
+                            "items": {
+                                "type": "object",
+                                "propeties": {
+                                    "name": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "id": {
+                                        "type": "number",
+                                        "required": true
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "modified": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "thumbnail": {
+                                        "type": "object",
+                                        "propeties": {
+                                            "path": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "extension": {
+                                                "type": "string",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "resourceURI": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "comics": {
+                                        "type": "object",
+                                        "required": true,
+                                        "propeties": {
+                                            "available": {
+                                                "type": "number",
+                                                "required": true
+                                            },
+                                            "collectionURI": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "required": true
+                                            },
+                                            "returned": {
+                                                "type": "number",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "series": {
+                                        "type": "object",
+                                        "required": true,
+                                        "propeties": {
+                                            "available": {
+                                                "type": "number",
+                                                "required": true
+                                            },
+                                            "collectionURI": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "required": true
+                                            },
+                                            "returned": {
+                                                "type": "number",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "stories": {
+                                        "type": "object",
+                                        "required": true,
+                                        "propeties": {
+                                            "available": {
+                                                "type": "number",
+                                                "required": true
+                                            },
+                                            "collectionURI": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "required": true
+                                            },
+                                            "returned": {
+                                                "type": "number",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "events": {
+                                        "type": "object",
+                                        "required": true,
+                                        "propeties": {
+                                            "available": {
+                                                "type": "number",
+                                                "required": true
+                                            },
+                                            "collectionURI": {
+                                                "type": "string",
+                                                "required": true
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "required": true
+                                            },
+                                            "returned": {
+                                                "type": "number",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "urls": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "propeties": {
+                                                "type": {
+                                                    "type": "string"
+                                                },
+                                                "url": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

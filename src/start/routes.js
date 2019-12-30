@@ -10,7 +10,6 @@ const auth = require('../app/middleware/auth');
 routes.get('/health', HealthController.index);
 routes.get('/health/marvel', HealthController.marvel);
 
-
 routes.post('/signup', validate.user, UserController.store);
 routes.post('/signin', validate.signin, SessionController.auth);
 routes.use(auth);
@@ -21,5 +20,6 @@ routes.delete('/user/:id', checkUser.checkToken, UserController.destroy);
 
 // Routes Characters
 routes.get('/characters', CharactersController.index);
+
 
 module.exports = routes;

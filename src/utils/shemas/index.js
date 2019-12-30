@@ -1,6 +1,6 @@
-const user = require('./user');
-const signin = require('./signin');
-const update = require('./update');
+const user = require('./user.joi.js');
+const signin = require('./signin.joi');
+const update = require('./update.joi');
 
 module.exports = {
   user,

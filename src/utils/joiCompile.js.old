@@ -1,0 +1,43 @@
+const fs = require('fs');
+const path = require('path');
+const j2s = require('joi-to-swagger');
+
+function walkSync(dir, filelist, extension) {
+  const files = fs.readdirSync(dir);
+  let list = filelist || [];
+  files.forEach((file) => {
+    if (fs.statSync(`${dir}/${file}`).isDirectory()) {
+      list = walkSync(`${dir}/${file}/`, list, extension);
+    } else if (file.includes(extension)) {
+      list.push(require(`${dir}${file}`.replace('//', '/'))); // eslint-disable-line global-require,import/no-dynamic-require
+    }
+  });
+  return list;
+}
+
+function compileSwagger(originalSwagger) {
+  const dir = path.resolve(__dirname, '../');
+  const modules = walkSync(dir, [], 'swagger.json');
+  const { definitions } = originalSwagger;
+  modules.forEach((m) => {
+    if (m.definitions) {
+      Object.assign(definitions, m.definitions);
+    }
+  });
+  return {
+    ...originalSwagger,
+    definitions,
+  };
+}
+
+function joiCompiler(originalSwagger) {
+  const swaggerIn = compileSwagger(originalSwagger);
+  const modules = walkSync(path.resolve(__dirname, '../'), [], 'joi.js');
+  modules.forEach((m) => {
+    const { components } = j2s(m);
+    Object.assign(swaggerIn.definitions, components.schemas);
+  });
+  return swaggerIn;
+}
+
+module.exports = joiCompiler;
