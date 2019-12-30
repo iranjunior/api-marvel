@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const { secret } = require('../config/vars');
 
 const generateLocal = (id) => jwt.sign(

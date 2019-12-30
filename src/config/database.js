@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { uri, env } = require('./vars');
 
 exports.connect = async () => {

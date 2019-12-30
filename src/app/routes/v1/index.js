@@ -1,10 +1,10 @@
 const routes = require('express').Router();
 
 const auth = require('../../middleware/auth');
-const User = require('./user');
+const Characters = require('./characters');
 const Health = require('./health');
 const Session = require('./session');
-const Characters = require('./characters');
+const User = require('./user');
 
 routes.use(Health); // Routes de checagem do sistema
 routes.use(Session); // Rotas de criacao de Sessao

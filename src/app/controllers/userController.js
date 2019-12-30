@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 const jwt = require('jsonwebtoken');
-const UserModel = require('../models/user');
+
 const { secret } = require('../../config/vars');
+const UserModel = require('../models/user');
 const Characters = require('./charactersControllers');
-const pathResolver = require('../lib/helpers/pathsResolver');
 
 const storeLocal = async (request, response, User) => {
   try {
