@@ -25,7 +25,7 @@
   "lint-staged": {
     "*.js": [
       "yarn lint",
-      "cross-env CI=true yarn test --bail --findRelatedTest"
+      "cross-env CI=true yarn test --bail --findRelatedTests --forceExit "
     ]
   },
   "dependencies": {
