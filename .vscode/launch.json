@@ -10,7 +10,7 @@
             "name": "[lOCAL] Test API Marvel",
             "program": "${workspaceFolder}/src/index.js",
             "env": {
-                "NODE_ENV": "development"
+                "NODE_ENV": "test"
             },
             "skipFiles": [
                 "node_modules/**/*.js",
