@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const swaggerUI = require('swagger-ui-express');
-const routes = require('./routes');
-const mongoose = require('../config/database');
-const swaggerConfig = require('../../swagger.json');
+const routesV1 = require('./app/routes/v1');
+const mongoose = require('./config/database');
+const swaggerConfig = require('../swagger.json');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(express.json());
 // Route Swagger
 app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerConfig));
 
-app.use(routes);
+app.use('/v1', routesV1);
 
 mongoose.connect();
 

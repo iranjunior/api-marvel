@@ -17,4 +17,9 @@ module.exports = {
   },
   rules: {
   },
+  overrides: [
+    {
+      files: ["__tests__/**/*.js", "*.config.js"]
+    }
+  ]
 };

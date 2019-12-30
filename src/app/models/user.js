@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const { Schema, model } = require('mongoose');
 const jwt = require('jsonwebtoken');
 const uuid = require('short-uuid');
