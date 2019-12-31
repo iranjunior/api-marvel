@@ -6,6 +6,8 @@ before_install:
     - npm prune
     - npm i --global jest
 install:
-    - npm install
-start:
-    - npm run test
+    - "npm install"
+    - "npm install devinstall"
+script:
+    - "npm run test"
+    - "npm uninstall devinstall"
