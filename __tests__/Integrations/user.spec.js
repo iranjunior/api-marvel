@@ -36,8 +36,10 @@ describe('Describe your tests Integrations', () => {
 
   it('Should show user', async () => {
     const { body } = await request(app).post('/v1/signup').send(user);
-
+    console.log('body.id :', body.id);
+    console.log('body.token :', body.token);
     const response = await request(app).get(`/v1/user/${body.id}`).set('Authorization', `Bearer ${body.token}`);
+    console.table(response);
     expect(response.status).toBe(200);
   });
 
