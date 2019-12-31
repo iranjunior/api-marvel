@@ -9,7 +9,7 @@
     "dev": "nodemon src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
     "start": "node src/index.js",
-    "test": "jest index.spec.js --runInBand --forceExit",
+    "test": "jest index.spec.js --forceExit",
     "test:watch": "jest index.spec.js --watch",
     "test:unit": "jest Units --watch",
     "test:integrations": "jest Integrations --watch",
