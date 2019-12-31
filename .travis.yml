@@ -6,12 +6,14 @@ cache:
     yarn: true
     directories:
       - node_modules
-install:
-    - "yarn install --production=false"
-script:
-    - yarn start
-
 jobs:
+    fast_finish: true
+    
+    install:
+        - "yarn install --production=false"
+    script:
+        - yarn start
+    
     include:
       - stage: Produce Coverage
         node_js: node
