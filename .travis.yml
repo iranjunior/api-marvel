@@ -7,7 +7,7 @@ cache:
     directories:
       - node_modules
 before_install:
-    - "yarn add -g jest"
+    - "yarn global add jest"
 install:
     - "yarn install --production=false"
 script:
