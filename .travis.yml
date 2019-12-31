@@ -3,6 +3,7 @@ sudo: false
 node_js: 
     - 12
 before_install:
+    - "npm i --global yarn"
     - "yarn add -g jest"
 install:
     - "yarn install --production=false"
