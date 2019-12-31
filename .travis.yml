@@ -9,7 +9,7 @@ cache:
 install:
     - "yarn install --production=false"
 script:
-    - echo "test"
+    - yarn start
 
 jobs:
     include:
