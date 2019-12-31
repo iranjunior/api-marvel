@@ -9,11 +9,11 @@
     "dev": "nodemon src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
     "start": "node src/index.js",
-    "test": "jest index.spec.js --runInBand NODE_ENV=test",
-    "test:watch": "jest index.spec.js NODE_ENV=test --watch",
+    "test": "jest index.spec.js --runInBand --forceExit",
+    "test:watch": "jest index.spec.js --watch",
     "test:unit": "jest Units --watch",
     "test:integrations": "jest Integrations --watch",
-    "test:coverage": "NODE_ENV=test jest --collect-coverage",
+    "test:coverage": "jest --collect-coverage",
     "validate": "yarn lint && jest index.spec.js --forceExit --bail"
   },
   "husky": {

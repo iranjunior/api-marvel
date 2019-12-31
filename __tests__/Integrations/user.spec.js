@@ -1,8 +1,10 @@
-const request = require('supertest');
 const faker = require('faker');
 const RandExp = require('randexp');
-const truncate = require('../Utils/truncate');
+const request = require('supertest');
+
 const app = require('../../src/app');
+const truncate = require('../Utils/truncate');
+
 
 const user = {};
 
