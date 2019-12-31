@@ -3,11 +3,8 @@ sudo: false
 node_js: 
     - 12
 before_install:
-    - npm prune
-    - npm i --global jest
+    - "yarn add -g jest"
 install:
-    - "npm install"
-    - "npm install devinstall"
+    - "yarn install --production=false"
 script:
-    - "npm run test"
-    - "npm uninstall devinstall"
+    - "yarn test"
