@@ -6,6 +6,10 @@ cache:
     yarn: true
     directories:
       - node_modules
+env:
+  global:
+    - DB_URI=mongodb+srv://admin:admin@cluster0-ofjtb.mongodb.net/test?retryWrites=true&w=majority
+    - TIMEOUT=1000
 install:
     - "yarn install --production=false"
 script:
