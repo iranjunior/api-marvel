@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+
 const SessionController = require('../../../controllers/sessionControllers');
 const UserController = require('../../../controllers/userController');
 const validate = require('../../../middleware/validate');

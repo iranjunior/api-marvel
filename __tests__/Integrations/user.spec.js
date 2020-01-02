@@ -1,8 +1,10 @@
-const request = require('supertest');
 const faker = require('faker');
 const RandExp = require('randexp');
-const truncate = require('../Utils/truncate');
+const request = require('supertest');
+
 const app = require('../../src/app');
+const truncate = require('../Utils/truncate');
+
 
 const user = {};
 
@@ -28,14 +30,13 @@ describe('Describe your tests Integrations', () => {
 
   it('Should create user', async () => {
     const response = await request(app).post('/v1/signup').send(user);
-
     expect(response.status).toBe(200);
   });
 
   it('Should show user', async () => {
     const { body } = await request(app).post('/v1/signup').send(user);
-
     const response = await request(app).get(`/v1/user/${body.id}`).set('Authorization', `Bearer ${body.token}`);
+
     expect(response.status).toBe(200);
   });
 

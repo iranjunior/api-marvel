@@ -1,10 +1,11 @@
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 const helmet = require('helmet');
 const swaggerUI = require('swagger-ui-express');
+
+const swaggerConfig = require('../swagger.json');
 const routesV1 = require('./app/routes/v1');
 const mongoose = require('./config/database');
-const swaggerConfig = require('../swagger.json');
 
 const app = express();
 

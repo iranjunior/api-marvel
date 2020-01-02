@@ -9,17 +9,16 @@
     "dev": "nodemon src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
     "start": "node src/index.js",
-    "test": "jest index.spec.js --runInBand NODE_ENV=test",
-    "test:watch": "jest index.spec.js NODE_ENV=test --watch",
+    "test": "jest index.spec.js --forceExit",
+    "test:watch": "jest index.spec.js --watch",
     "test:unit": "jest Units --watch",
     "test:integrations": "jest Integrations --watch",
-    "test:coverage": "NODE_ENV=test jest --collect-coverage",
+    "test:coverage": "jest --collect-coverage",
     "validate": "yarn lint && jest index.spec.js --forceExit --bail"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn validate"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -46,10 +45,12 @@
     "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
+    "coveralls": "^3.0.9",
     "cross-env": "^6.0.3",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import-helpers": "^1.0.2",
     "faker": "^4.1.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",

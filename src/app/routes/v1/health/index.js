@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+
 const HealthController = require('../../../controllers/healthControllers');
 
 routes.get('/health', HealthController.index);

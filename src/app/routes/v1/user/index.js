@@ -1,4 +1,5 @@
 const routes = require('express').Router();
+
 const UserController = require('../../../controllers/userController');
 const checkUser = require('../../../middleware/checkToken');
 const validate = require('../../../middleware/validate');

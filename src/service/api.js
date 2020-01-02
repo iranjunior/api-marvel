@@ -1,5 +1,6 @@
 const Axios = require('axios');
 const md5 = require('md5');
+
 const { publicKey, privateKey } = require('../config/vars');
 
 const api = Axios.create({

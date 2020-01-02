@@ -1,8 +1,8 @@
 /* eslint-disable func-names */
-const { Schema, model } = require('mongoose');
-const jwt = require('jsonwebtoken');
-const uuid = require('short-uuid');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { Schema, model } = require('mongoose');
+const uuid = require('short-uuid');
 
 const Token = require('../../utils/refreshToken');
 
