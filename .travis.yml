@@ -12,3 +12,7 @@ jobs:
         - "yarn install --production=false"
     script: 
         - jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+    deploy: &heroku
+        provider: heroku
+        app: bff-marvel
+        api_key: $HEROKU_AUTH_TOKEN
