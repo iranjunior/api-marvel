@@ -15,4 +15,4 @@ jobs:
     deploy: &heroku
         provider: heroku
         app: bff-marvel
-        api_key: $HEROKU_AUTH_TOKEN
+        api_key: 3782f28f-f1b7-4180-b3b0-25580dd09552
