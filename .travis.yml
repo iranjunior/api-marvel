@@ -14,7 +14,7 @@ jobs:
         - yarn test
     deploy: &heroku
         provider: heroku
-        app: api-marvel
+        app: bff-marvel
         api_key: 3782f28f-f1b7-4180-b3b0-25580dd09552
         on:
             repo: iranjunior/api-marvel
