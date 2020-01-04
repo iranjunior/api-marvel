@@ -11,7 +11,7 @@ jobs:
     install:
         - "yarn install --production=false"
     script: 
-        - jest --coverage --coverageReporters=text-lcov | coveralls
+        - jest --detectOpenHandles --forceExit --coverage --coverageReporters=text-lcov | coveralls
     deploy: &heroku
         provider: heroku
         app: bff-marvel
