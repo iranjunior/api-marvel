@@ -11,7 +11,7 @@ jobs:
     install:
         - "yarn install --production=false"
     script: 
-        - jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+        - yarn test
     deploy: &heroku
         provider: heroku
         app: api-marvel
