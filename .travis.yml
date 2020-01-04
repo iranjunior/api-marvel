@@ -14,5 +14,7 @@ jobs:
         - jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
     deploy: &heroku
         provider: heroku
-        app: bff-marvel
+        app: api-marvel
         api_key: 3782f28f-f1b7-4180-b3b0-25580dd09552
+        on:
+            repo: iranjunior/api-marvel
