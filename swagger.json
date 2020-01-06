@@ -24,7 +24,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/user"
+                                "$ref": "#/definitions/User"
                             }
                         }
                     }
@@ -231,7 +231,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/user"
+                                "$ref": "#/definitions/User"
                             }
                         }
                     }
@@ -577,7 +577,7 @@
             "properties": {
                 "_original": {
                     "type": "object",
-                    "$ref": "#/definitions/user"
+                    "$ref": "#/definitions/User"
                 },
                 "details": {
                     "type": "array",
