@@ -12,7 +12,7 @@
         "basePath": "/"
     },
     "paths": {
-        "/signup": {
+        "/v1/signup": {
             "post": {
                 "tags": [
                     "User"
@@ -24,7 +24,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/User"
+                                "$ref": "#/definitions/user"
                             }
                         }
                     }
@@ -77,7 +77,7 @@
                 }
             }
         },
-        "/signin": {
+        "/v1/signin": {
             "post": {
                 "tags": [
                     "Session"
@@ -132,7 +132,7 @@
                 }
             }
         },
-        "/user/{id}": {
+        "/v1/user/{id}": {
             "get": {
                 "tags": [
                     "User"
@@ -231,7 +231,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/User"
+                                "$ref": "#/definitions/user"
                             }
                         }
                     }
@@ -341,7 +341,7 @@
                 }
             }
         },
-        "health": {
+        "/v1/health": {
             "get": {
                 "tags": [
                     "Health"
@@ -364,7 +364,7 @@
                 }
             }
         },
-        "health/marvel": {
+        "/v1/health/marvel": {
             "get": {
                 "tags": [
                     "Health"
@@ -400,7 +400,7 @@
                 }
             }
         },
-        "characters": {
+        "/v1/characters": {
             "get": {
                 "tags": [
                     "Marvel"
@@ -577,7 +577,7 @@
             "properties": {
                 "_original": {
                     "type": "object",
-                    "$ref": "#/definitions/User"
+                    "$ref": "#/definitions/user"
                 },
                 "details": {
                     "type": "array",
