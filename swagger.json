@@ -141,16 +141,16 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "uuid",
+                        "name": "id",
                         "schema": {
                             "type": "string"
                         },
                         "required": true,
-                        "description": "O uuid é uma string que representa o usuario"
+                        "description": "O id é uma string que representa o usuario"
                     },
                     {
                         "in": "header",
-                        "name": "Bearer token",
+                        "name": "authorization",
                         "schema": {
                             "type": "string"
                         },
@@ -209,7 +209,7 @@
                 "parameters": [
                     {
                         "in": "header",
-                        "name": "Bearer token",
+                        "name": "authorization",
                         "schema": {
                             "type": "string"
                         },
@@ -218,7 +218,7 @@
                     },
                     {
                         "in": "header",
-                        "name": "Bearer token",
+                        "name": "authorization",
                         "schema": {
                             "type": "string"
                         },
@@ -293,7 +293,7 @@
                 "parameters": [
                     {
                         "in": "header",
-                        "name": "Bearer token",
+                        "name": "authorization",
                         "schema": {
                             "type": "string"
                         },
@@ -408,7 +408,7 @@
                 "parameters": [
                     {
                         "in": "header",
-                        "name": "Bearer token",
+                        "name": "authorization",
                         "schema": {
                             "type": "string"
                         },
